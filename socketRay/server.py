@@ -32,17 +32,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         conn, addr = s.accept()
         with conn:
             print("Connected to", addr)
+            conn.sendall(bytes("Bem-vindo, para monitorar:\n CPU digite: Monitorar CPU\nMemória digite: Monitorar Memória", "utf-8"))
             while True:
                 data = conn.recv(1024)
                 if not data: break
-                if(data.decode() == "Memória"):
+                if(data.decode() == "Monitorar Memória"):
                     print("Received:\n", data.decode())
                     while True:
                         print("Received:\n", data.decode())
                         conn.sendall(bytes(get_mem_info(), "utf-8"))
                         sleep(5)
                 #         if data.decode() == "Pare": break
-                elif(data.decode() == "CPU"):
+                elif(data.decode() == "Monitorar CPU"):
                     print("Received:\n", data.decode())
                     while True:
                         print("Received:\n", data.decode())
