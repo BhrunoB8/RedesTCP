@@ -22,7 +22,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         conn, addr = s.accept()
         with conn:
             print("Connected to", addr)
-            conn.sendall(bytes("Bem-vindo, para monitorar:\nCPU digite: Monitorar CPU\nMemória digite: Monitorar Memória", "utf-8"))
+            conn.sendall(bytes("\nBem-vindo, para monitorar:\nCPU digite: Monitorar CPU\nMemória digite: Monitorar Memória", "utf-8"))
             while True:
                 data = conn.recv(1024)
                 if not data: break
