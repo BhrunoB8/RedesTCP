@@ -26,9 +26,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             while True:
                 data = conn.recv(1024)
                 if not data: break
-                if(data.decode() == "Monitorar Memória"):
+                decode = data.decode()
+                if(decode == "Monitorar Memória"):
                     print("Received:\n", data.decode())
                     conn.sendall(bytes(get_mem_info(), "utf-8"))
-                elif(data.decode() == "Monitorar CPU"):
+                elif(decode == "Monitorar CPU"):
                     print("Received:\n", data.decode())
                     conn.sendall(bytes(f"Total CPU Usage: {psutil.cpu_percent()}%", "utf-8"))   
+                
