@@ -71,7 +71,7 @@ class Servidor:
                     print("Recebido do cliente:\n", data.decode())
                     connection.sendall(bytes(f"Estatísticas do uso da rede: {psutil.net_io_counters()}", "utf-8"))
 
-                # Se a mensagem recebida pelo cliente for "3" ele executa a função net_io_counters()
+                # Se a mensagem recebida pelo cliente for "4" ele executa a função process_iter()
                 # Usa o sendall para enviar a informação ao cliente sobre os PROCESSOS ATIVOS
                 elif(decode == "4"):
                     procs = {p.pid: p.info for p in psutil.process_iter(['name', 'username'])}
